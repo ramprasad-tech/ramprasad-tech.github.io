@@ -1,42 +1,162 @@
 <html>
-<head>
-    <title>Exoplanet k2-18b</title>
 
-    <meta charset="utf-8" />
-    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+	<head>
+		<script type="text/javascript" src="jquery.min.js"></script>
+		<link href="jquery-ui/jquery-ui.css" rel="stylesheet">
+		<style type="text/css">
+		body
+		{
+			font-size:150%;
+		}
+		
+		input
+		{
+			height:40px;
+			padding:5px;
+			font-size:25px;
+			border:1px solid grey;
+			margin-left:200px;
+		}
+		
+		label
+		{
+			position:relative;
+			top:40px;
+			width:200px;
+			float:left;
+		}
+		
+		#wrap
+		{
+			width:550px;
+			margin:0 auto;
+		}
+		
+		#submitbutton
+		{
+			width:130px;
+			margin-top:20px;
+			margin-left:200px;
+		
+		}
+		
+		#error
+		{
+			color:red;
+			font-size:80%;
+		}
+		
+		#success
+		{
+			color:green;
+			display:none;
+		}
+		
+		</style>
 	
-</head>
+	
+	</head>
+	<body>
+		<div id="wrap">
+			
+			<div id="success">Congrats</div>
+			
+			<div id="error"></div>
+			
+			<div class="forelement">
+				<label for="email">Email</label>
+				<input type="text" name="email" id="email" placeholder="eg.yourname@gmail.com">
+			</div>
+			
+			<div class="forelement">
+				<label for="phone">Telephone</label>
+				<input type="text" name="phone" id="phone" placeholder="eg.0123456789">
+			</div>
+			
+			<div class="forelement">
+				<label for="password">Password</label>
+				<input type="password" name="password" id="password">
+			</div>
+			
+			<div class="forelement">
+				<label for="confirm">Confirm Password</label>
+				<input type="password" name="confirm" id="confirm">
+			</div>
+			
+			<div class="forelement">
+				<input type="submit" id="submitbutton" value="Sign up">
+			
+			</div>
+			
+		</div>		
+	
+		
+		<script type="text/javascript">
+			function isEmail(email) {
+			  var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+			  return regex.test(email);
+			}
+			
+			$("#submitbutton").click(function()
+			{	
+				var error="";
+				var fieldmissing="";
+				if($("#email").val() == "")
+				{
+					fieldmissing +="<br>Email";
+				}
+				if($("#phone").val() == "")
+				{
+					fieldmissing +="<br>telephone";
+				}
+				if($("#password").val() == "")
+				{
+					fieldmissing +="<br>password";
+				}
+				if($("#confirm").val() == "")
+				{
+					fieldmissing +="<br>confirm";
+				}
+				if(fieldmissing != "")
+				{
+					error+="<p>The following fields are missing</p>"+fieldmissing;
+				}
+				
+				
+				if(isEmail($("#email").val())== false)
+				{
+					error+="<p>mail invalid</p>";
+				}
+				
+				if($.isNumeric($("#phone").val())==false)
+				{
+					error+="<p>number is not numeric</p>";
+				}
+				if($("#password").val()!=$("#confirm").val())
+				{
+					error+="<p>password mismatch</p>";
+				}
+				
+				if(error !="")
+				{
+					$("#error").html(error);
+				}
+				
+				else
+				{
+					$("#success").show();
+					$("#error").hide();
+				}
+		
+				
+			});
+			
+	
+		</script>
+		
+	</body>
 
-<body>
-	<h1>K2-18b</h1>
-	<img src="k2-18b.jpg">
-	<p>Even though it is a exoplanet,it the only panet to be discovered with water other than earth.It is also the planet which has atmosphere making it suitable for human habitation</p>
-	<h1>salient features</h1>
-	<table>
-		<tr>
-			<td> mass </td>
-			<td> 2.3</td>
-		</tr>
-		<tr>
-			<td> temperature </td>
-			<td> 265 </td>
-		</tr>
-	</table>
-	<p>aleins in there &#63;</p>
-	 <iframe width="560" height="315" src="https://www.youtube.com/embed/e6S9JrqRJdQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-	<hr>
-	<h1>Other features</h1>
-	<ul>
-		<li>Discovered with kepler telescope</li>
-		<li>It has a 33 day orbit period </li>
-		<li>It is 8 times the mass of earth</li>
-	</ul>
-	for other habitable exoplanet
-	<form action="https://en.wikipedia.org/wiki/List_of_potentially_habitable_exoplanets">
-		<input type="submit" value="click here">
-	</form>
-	
-</body>
+
+
 
 </html>
